@@ -1,9 +1,3 @@
-# holbertonschool-binary_trees
-
-## C - Binary Trees
-
-
-
 /**
  * struct binary_tree_s - Binary tree node
  *
@@ -12,8 +6,6 @@
  * @left: Pointer to the left child node
  * @right: Pointer to the right child node
  */
-
- ```c
 struct binary_tree_s
 {
     int n;
@@ -23,4 +15,3 @@ struct binary_tree_s
 };
 
 typedef struct binary_tree_s binary_tree_t;
-```
