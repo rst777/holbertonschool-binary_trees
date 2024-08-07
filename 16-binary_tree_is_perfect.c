@@ -9,17 +9,33 @@
 /* Fonction pour calculer la hauteur de l'arbre */
 size_t binary_tree_height(const binary_tree_t *tree)
 {
-	if (tree == NULL)
-		return (0);
+        size_t left_height = 0;
+        size_t right_height = 0;
 
-	size_t left_height = binary_tree_height(tree->left);
-	size_t right_height = binary_tree_height(tree->right);
+        if (tree == NULL)
+        {
+                return (0);
+        }
 
-	if (left_height > right_height)
-		return (left_height + 1);
-	else
-		return (right_height + 1);
+        if (tree->left != NULL)
+        {
+                left_height = binary_tree_height(tree->left) + 1;
+        }
 
+        if (tree->right != NULL)
+        {
+                right_height = binary_tree_height(tree->right) + 1;
+        }
+
+        if (left_height > right_height)
+        {
+                return (left_height);
+        }
+
+        else
+        {
+                return (right_height);
+        }
 }
 /**
  * count_nodes - Count the number of nodes in a binary tree
@@ -30,10 +46,10 @@ size_t binary_tree_height(const binary_tree_t *tree)
 /* Compter le nombre total de noeud dans l'arbre +1 pour le noeud courant */
 size_t count_nodes(const binary_tree_t *tree)
 {
-	if (tree == NULL)
-		return (0);
+        if (tree == NULL)
+                return (0);
 
-	return (1 + count_nodes(tree->left) + count_nodes(tree->right));
+        return (1 + count_nodes(tree->left) + count_nodes(tree->right));
 }
 
 /**
@@ -47,16 +63,16 @@ size_t count_nodes(const binary_tree_t *tree)
 /* Voir si l'arbre est complet */
 int is_complete(const binary_tree_t *tree, size_t index, size_t node_count)
 {
-	if (tree == NULL)
-		return (1);
+        if (tree == NULL)
+                return (1);
 
 /* Vérifie si l'index du noeud est valide */
-	if (index >= node_count)
-		return (0); /* Si invalide pas complet */
+        if (index >= node_count)
+                return (0); /* Si invalide pas complet */
 
 /* Vérifie récursivement les sous-arbres G D pour voir si il est complet */
-	return (is_complete(tree->left, 2 * index + 1, node_count) &&
-			is_complete(tree->right, 2 * index + 2, node_count));
+        return (is_complete(tree->left, 2 * index + 1, node_count) &&
+                        is_complete(tree->right, 2 * index + 2, node_count));
 }
 
 /**
@@ -67,26 +83,25 @@ int is_complete(const binary_tree_t *tree, size_t index, size_t node_count)
  */
 int binary_tree_is_perfect(const binary_tree_t *tree)
 {
-	if (tree == NULL)
-		return (0);
-/*
-* Calcule la hauteur de l'arbre (en niveaux)
-* et soustrait 1 pour obtenir la hauteur en terme de niveaux
-*/
-	size_t height = binary_tree_height(tree) - 1;
+    // Initialisation des variables
+    size_t height = 0;
+    size_t node_count = 0;
+    size_t expected_nodes = 0;
 
-/* Compte le nombre total de noeuds dans l'arbre */
-	size_t node_count = count_nodes(tree);
+    // Si l'arbre est NULL, il n'est pas parfait
+    if (tree == NULL)
+        return (0);
 
-/*
-* Calcule le nombre attendu de noeuds pour un arbre parfait
-* de la hauteur donnée.
-*/
-	size_t expected_nodes = (1 << (height + 1)) - 1;
-/*
-*Vérifie si l'arbre est complet et si le nombre de noeuds
-*correspond au nombre attendu pour un arbre parfait.
-*/
-	return (is_complete(tree, 0, node_count) &&
-			(node_count == expected_nodes));
+    // Calcule la hauteur de l'arbre
+    height = binary_tree_height(tree) - 1;
+
+    // Compte le nombre total de n~Suds dans l'arbre
+    node_count = count_nodes(tree);
+
+    // Calcule le nombre attendu de n~Suds pour un arbre parfait de la hauteur donnée
+    expected_nodes = (1 << (height + 1)) - 1;
+
+    // Vérifie sile'arbre est complet et si le nombre de n~Suds correspond au nombre attendu pour un arbre parfait
+    return (is_complete(tree, 0, node_count) &&
+            (node_count == expected_nodes));
 }
