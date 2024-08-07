@@ -101,7 +101,7 @@ int binary_tree_is_perfect(const binary_tree_t *tree)
     // Calcule le nombre attendu de n~Suds pour un arbre parfait de la hauteur donnée
     expected_nodes = (1 << (height + 1)) - 1;
 
-    // Vérifie si l'arbre est complet et si le nombre de n~Suds correspond au nombre attendu pour un arbre parfait
+    // Vérifie sile'arbre est complet et si le nombre de n~Suds correspond au nombre attendu pour un arbre parfait
     return (is_complete(tree, 0, node_count) &&
             (node_count == expected_nodes));
 }
