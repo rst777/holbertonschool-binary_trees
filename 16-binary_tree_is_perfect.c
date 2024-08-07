@@ -83,25 +83,25 @@ int is_complete(const binary_tree_t *tree, size_t index, size_t node_count)
  */
 int binary_tree_is_perfect(const binary_tree_t *tree)
 {
-    // Initialisation des variables
+    /* Initialisation des variables */
     size_t height = 0;
     size_t node_count = 0;
     size_t expected_nodes = 0;
 
-    // Si l'arbre est NULL, il n'est pas parfait
+    /* Si l'arbre est NULL, il n'est pas parfait */
     if (tree == NULL)
         return (0);
 
-    // Calcule la hauteur de l'arbre
+    /* Calcule la hauteur de l'arbre */
     height = binary_tree_height(tree) - 1;
 
-    // Compte le nombre total de n~Suds dans l'arbre
+    /* Compte le nombre total de n~Suds dans l'arbre */
     node_count = count_nodes(tree);
 
-    // Calcule le nombre attendu de n~Suds pour un arbre parfait de la hauteur donnée
+    /* Calcule le nombre attendu de n~Suds pour un arbre parfait de la hauteur donnée*/
     expected_nodes = (1 << (height + 1)) - 1;
 
-    // Vérifie sile'arbre est complet et si le nombre de n~Suds correspond au nombre attendu pour un arbre parfait
+    /* Vérifie sile'arbre est complet et si le nombre de n~Suds correspond au nombre attendu pour un arbre parfai */
     return (is_complete(tree, 0, node_count) &&
             (node_count == expected_nodes));
 }
