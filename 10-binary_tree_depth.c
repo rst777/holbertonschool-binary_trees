@@ -7,16 +7,13 @@
  */
 size_t binary_tree_depth(const binary_tree_t *tree)
 {
-	size_t left_depth, right_depth;
+	size_t depth = 0;
 
-	if (tree == NULL)
+	while (tree && tree->parent)
 	{
-		return (0);
+		tree = tree->parent;
+		depth++;
 	}
-/*Appels récursifs pour mesurer la profondeur des sous-arbres G D */
-	left_depth = binary_tree_depth(tree->left);
-	right_depth = binary_tree_depth(tree->right);
 
-/* Compare les depth des sous-arbres G D, ajoute 1 pour le noeud courant */
-	return ((left_depth > right_depth ? left_depth : right_depth) + 1);
+	return depth;
 }
