@@ -14,6 +14,7 @@ size_t binary_tree_height(const binary_tree_t *tree)
 
 	if (tree == NULL)
 	{
+
 	return (0);
 	}
 		left_height = binary_tree_height(tree->left);
@@ -32,9 +33,15 @@ size_t binary_tree_height(const binary_tree_t *tree)
 size_t count_nodes(const binary_tree_t *tree)
 {
 	if (tree == NULL)
+
 	return (0);
 
 		return (1 + count_nodes(tree->left) + count_nodes(tree->right));
+=======
+	return (0);
+
+	  return (1 + count_nodes(tree->left) + count_nodes(tree->right));
+
 }
 
 /**
@@ -57,7 +64,11 @@ int is_complete(const binary_tree_t *tree, size_t index, size_t node_count)
 
 /* Vérifie récursivement les sous-arbres G D pour voir si il est complet */
 	return (is_complete(tree->left, 2 * index + 1, node_count) &&
-		is_complete(tree->right, 2 * index + 2, node_count));
+
+      is_complete(tree->right, 2 * index + 2, node_count));
+=======
+			is_complete(tree->right, 2 * index + 2, node_count));
+
 }
 
 /**
@@ -83,6 +94,7 @@ int binary_tree_is_perfect(const binary_tree_t *tree)
 	/* Compte le nombre total de n~Suds dans l'arbre */
 	node_count = count_nodes(tree);
 
+<
 /*
 * Calcule le nombre attendu de neuds pour un arbre parfait
 * de la hauteur donnée.
@@ -95,4 +107,10 @@ int binary_tree_is_perfect(const binary_tree_t *tree)
 */
 	return (is_complete(tree, 0, node_count) &&
 			(node_count == expected_nodes));
+=======
+	expected_nodes = (1 << (height + 1)) - 1;
+
+	return (is_complete(tree, 0, node_count) &&
+		(node_count == expected_nodes));
+
 }
